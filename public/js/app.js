@@ -1818,18 +1818,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      name: 'dddd',
-      Description: 'dsdsdsd',
+      name: '',
+      description: '',
       todoApp: {
         name: '',
-        Description: ''
+        description: ''
       },
+      listTodo: [],
       config: {
         headers: {
-          'Authorization': "bearer " + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU1Njg3NzIxMywiZXhwIjoxNTU2ODgwODEzLCJuYmYiOjE1NTY4NzcyMTMsImp0aSI6IndVME52U3paUUlydUFhNUIiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.VzTw9415558Xbb2OdgOGxYDZhur06qb_pcUzUyhFsDI'
+          'Authorization': "bearer " + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU1NjkxMTc3MiwiZXhwIjoxNTU2OTE1MzcyLCJuYmYiOjE1NTY5MTE3NzIsImp0aSI6ImdwRFd2azBmV1loWEpFeksiLCJzdWIiOjcsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.yhnfPgG94M-X4UwQIruiZjooHs_3c6Vk_PErf9a3JpA'
         }
       }
     };
@@ -1839,11 +1844,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getListTodo: function getListTodo() {
+      var _this = this;
+
       axios.get('api/getTodoList', this.config).then(function (response) {
-        console.log(response.data.todo);
+        _this.listTodo = response.data.todo;
       })["catch"](function (error) {
         console.log(error.response.data.status);
       });
+    },
+    deleteItemTodo: function deleteItemTodo(id, key) {
+      console.log(id);
+      console.log(key);
     }
   }
 });
@@ -37187,24 +37198,49 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("h2", [_vm._v("Bordered Table")]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "The .table-bordered class adds borders on all sides of the table and the cells:"
-      )
-    ]),
+    _c("h2", [_vm._v("Todo Table")]),
     _vm._v(" "),
     _c("table", { staticClass: "table table-bordered" }, [
       _vm._m(0),
       _vm._v(" "),
-      _c("tbody", [
-        _c("tr", [
-          _c("td", [_vm._v(_vm._s(this.name))]),
-          _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(this.Description))])
-        ])
-      ])
+      Object.keys(this.listTodo).length != 0
+        ? _c(
+            "tbody",
+            _vm._l(this.listTodo, function(item, index) {
+              return _c("tr", { key: index }, [
+                _c("td", [_vm._v(_vm._s(item.name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(item.description))]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "button" }
+                    },
+                    [_vm._v("Edit")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteItemTodo(item.id, index)
+                        }
+                      }
+                    },
+                    [_vm._v("Delete")]
+                  )
+                ])
+              ])
+            }),
+            0
+          )
+        : _vm._e()
     ])
   ])
 }
@@ -37217,7 +37253,9 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Description")])
+        _c("th", [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Control")])
       ])
     ])
   }
@@ -49617,8 +49655,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/TodoApp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/html/TodoApp/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/TodoApp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/TodoApp/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

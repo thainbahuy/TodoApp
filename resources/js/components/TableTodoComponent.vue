@@ -1,19 +1,23 @@
 <template>
     <div class="container">
-        <h2>Bordered Table</h2>
-        <p>The .table-bordered class adds borders on all sides of the table and the cells:</p>
+        <h2>Todo Table</h2>
         <table class="table table-bordered">
             <thead>
             <tr>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Control</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>{{this.name}}</td>
-                <td>{{this.Description}}</td>
-            </tr>
+            <tbody v-if="Object.keys(this.listTodo).length != 0">
+                <tr v-for="(item,index) in this.listTodo" :key = "index">
+                    <td>{{item.name}}</td>
+                    <td>{{item.description}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary">Edit</button>
+                        <button @click="deleteItemTodo(item.id,index)" type="button" class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -24,15 +28,16 @@
     export default {
         data(){
             return{
-                name:'dddd',
-                Description : 'dsdsdsd',
+                name:'',
+                description : '',
                 todoApp :{
                     name : '',
-                    Description: ''
+                    description: ''
 
                 },
+                listTodo : [],
                 config : {
-                    headers: {'Authorization': "bearer " + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU1Njg3NzIxMywiZXhwIjoxNTU2ODgwODEzLCJuYmYiOjE1NTY4NzcyMTMsImp0aSI6IndVME52U3paUUlydUFhNUIiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.VzTw9415558Xbb2OdgOGxYDZhur06qb_pcUzUyhFsDI'}
+                    headers: {'Authorization': "bearer " + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU1NjkxMTc3MiwiZXhwIjoxNTU2OTE1MzcyLCJuYmYiOjE1NTY5MTE3NzIsImp0aSI6ImdwRFd2azBmV1loWEpFeksiLCJzdWIiOjcsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.yhnfPgG94M-X4UwQIruiZjooHs_3c6Vk_PErf9a3JpA'}
                 },
             }
         },
@@ -40,14 +45,17 @@
           this.getListTodo();
         },
         methods :{
-
             getListTodo(){
                 axios.get('api/getTodoList',this.config)
                     .then(response => {
-                        console.log(response.data.todo);
+                        this.listTodo = response.data.todo;
                     }).catch(error => {
                         console.log(error.response.data.status);
                 });
+            },
+            deleteItemTodo(id,key){
+                console.log(id);
+                console.log(key);
             }
         }
 
