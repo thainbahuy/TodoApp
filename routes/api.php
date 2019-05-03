@@ -25,6 +25,7 @@ Route::post('signup','AuthController@register');
 Route::get('user','AuthController@getAuthenticatedUser');
 
 Route::group(['middleware' => 'jwtauth'], function () {
-    Route::get('/getTodoList', 'ToDoController@getList');
+    Route::get('getTodoList', 'ToDoController@getList');
+    Route::get('user','AuthController@getAuthenticatedUser');
 });
 

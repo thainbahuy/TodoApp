@@ -57,26 +57,29 @@ class AuthController extends Controller
 
     public function getAuthenticatedUser()
     {
-        try {
-            // ham nay se nhan token o hearder , sau do se generate token ra du lieu de xac thuc data user trong db
-            if (!$user = JWTAuth::parseToken()->authenticate()) {
-                return response()->json(['user_not_found'], 404);
-            }
-
-        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-
-            return response()->json(['token_expired'], $e->getStatusCode());
-
-        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-
-            return response()->json(['token_invalid'], $e->getStatusCode());
-
-        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
-
-            return response()->json(['token_absent'], $e->getStatusCode());
-
-        }
-
-        return response()->json(compact('user'));
+//        try {
+//            // ham nay se nhan token o hearder , sau do se generate token ra du lieu de xac thuc data user trong db
+//            if (!$user = JWTAuth::parseToken()->authenticate()) {
+//                return response()->json(['user_not_found'], 404);
+//            }
+//
+//        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+//
+//            return response()->json(['token_expired'], $e->getStatusCode());
+//
+//        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+//
+//            return response()->json(['token_invalid'], $e->getStatusCode());
+//
+//        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+//
+//            return response()->json(['token_absent'], $e->getStatusCode());
+//
+//        }
+        // parse token sang data user
+        $user = JWTAuth::parseToken()->toUser();
+        //generate data ra token moi
+        $token = JWTAuth::fromUser($user);
+        return response()->json(compact('user','token'));
     }
 }
