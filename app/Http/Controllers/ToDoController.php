@@ -14,4 +14,9 @@ class ToDoController extends Controller
             'todo' => $todos
         ]);
     }
+
+    public function index()
+    {
+        return view('Homepage');
+    }
 }
