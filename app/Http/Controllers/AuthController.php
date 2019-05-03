@@ -18,7 +18,7 @@ class AuthController extends Controller
         $credentials['email'] = $request->get('email');
         $credentials['password'] = $request->get('password');
         try {
-            // xác nhận thông tin người dùng gửi lên có hợp lệ hay không
+            // xác nhận thông tin người dùng gửi lên có hợp lệ hay không ,neu hop le ti generate ra token roi tra ve
             $token = JWTAuth::attempt($credentials);
             if ($token) {
                 return response()->json(['token' => $token], Response::HTTP_OK);
@@ -49,7 +49,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->get('password')),
         ]);
 
-        //generate token tu data user khi da tao ra trong db
+        //generate ra token tu data user khi da tao ra trong db
         //$token = JWTAuth::fromUser($user);
 
         return response()->json(compact('user'), Response::HTTP_CREATED);
