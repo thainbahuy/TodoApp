@@ -13,8 +13,9 @@ class TodoRepository implements TodoRepositoryInterface
         return Todo::get();
     }
 
-    public function deleteTodo($id){
-        
+    public function deleteTodo($id)
+    {
+        Todo::where('id','=',$id)->delete();
     }
 
 }

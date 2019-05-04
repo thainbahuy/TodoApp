@@ -22,10 +22,10 @@ use Illuminate\Http\Request;
 
 Route::post('login','AuthController@login');
 Route::post('signup','AuthController@register');
-Route::get('user','AuthController@getAuthenticatedUser');
 
 Route::group(['middleware' => 'jwtauth'], function () {
     Route::get('getTodoList', 'ToDoController@getList');
+    Route::delete('todo/{id}', 'ToDoController@deleteTodo');
     Route::get('user','AuthController@getAuthenticatedUser');
 });
 

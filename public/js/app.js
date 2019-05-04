@@ -1834,7 +1834,7 @@ __webpack_require__.r(__webpack_exports__);
       listTodo: [],
       config: {
         headers: {
-          'Authorization': "bearer " + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU1NjkxMTc3MiwiZXhwIjoxNTU2OTE1MzcyLCJuYmYiOjE1NTY5MTE3NzIsImp0aSI6ImdwRFd2azBmV1loWEpFeksiLCJzdWIiOjcsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.yhnfPgG94M-X4UwQIruiZjooHs_3c6Vk_PErf9a3JpA'
+          'Authorization': "bearer " + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU1Njk2NDExNSwiZXhwIjoxNTU2OTY3NzE1LCJuYmYiOjE1NTY5NjQxMTUsImp0aSI6IkFlZmVKUUpncHg0RjZ6SE0iLCJzdWIiOjcsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.elbHgiwfogFxlogwE3fAbyMBgl6A8QwA0mvRBHEjqlc'
         }
       }
     };
@@ -1849,12 +1849,17 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('api/getTodoList', this.config).then(function (response) {
         _this.listTodo = response.data.todo;
       })["catch"](function (error) {
-        console.log(error.response.data.status);
+        alert(error.response.data.status);
       });
     },
-    deleteItemTodo: function deleteItemTodo(id, key) {
-      console.log(id);
-      console.log(key);
+    deleteItemTodo: function deleteItemTodo(id, index) {
+      var _this2 = this;
+
+      axios["delete"]('api/todo/' + id, this.config).then(function (response) {
+        _this2.listTodo.splice(index, 1);
+      })["catch"](function (error) {
+        alert(error.response.data.status);
+      });
     }
   }
 });
