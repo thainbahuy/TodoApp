@@ -11,10 +11,11 @@ class ToDoController extends Controller
 {
     protected $todoRepository;
 
-    public function __construct(TodoRepositoryInterface $todoRepository) {
+    public function __construct(TodoRepositoryInterface $todoRepository)
+    {
         $this->todoRepository = $todoRepository;
     }
-    
+
     public function index()
     {
         return view('Homepage');
@@ -28,11 +29,11 @@ class ToDoController extends Controller
         ]);
     }
 
-    public function deleteTodo(Request $request){
+    public function deleteTodo(Request $request)
+    {
         $this->todoRepository->deleteTodo($request->id);
-        return response()->json(['status' => 'delete success'],Response::HTTP_OK);
+        return response()->json(['status' => 'delete success'], Response::HTTP_OK);
     }
-
 
 
 }

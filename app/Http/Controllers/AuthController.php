@@ -80,6 +80,6 @@ class AuthController extends Controller
         $user = JWTAuth::parseToken()->toUser();
         //generate data ra token moi
         $token = JWTAuth::fromUser($user);
-        return response()->json(compact('user','token'));
+        return response()->json(compact('user', 'token'));
     }
 }
