@@ -1822,6 +1822,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1834,7 +1835,7 @@ __webpack_require__.r(__webpack_exports__);
       listTodo: [],
       config: {
         headers: {
-          'Authorization': "bearer " + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU1Njk2NDExNSwiZXhwIjoxNTU2OTY3NzE1LCJuYmYiOjE1NTY5NjQxMTUsImp0aSI6IkFlZmVKUUpncHg0RjZ6SE0iLCJzdWIiOjcsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.elbHgiwfogFxlogwE3fAbyMBgl6A8QwA0mvRBHEjqlc'
+          'Authorization': "bearer " + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU1NzEyMzQ2MSwiZXhwIjoxNTU3MTI3MDYxLCJuYmYiOjE1NTcxMjM0NjEsImp0aSI6Ik50RVZMNlJoTjVoZWZLN2EiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.Z3D0vy7_GxmXTFpsvoOBL7mogSEkOJskDwnW4LedqSM'
         }
       }
     };
@@ -1860,6 +1861,13 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         alert(error.response.data.status);
       });
+    },
+    addMoreRowdefault: function addMoreRowdefault() {
+      var todo_Object = {
+        name: 'abc',
+        description: 'abc123'
+      };
+      this.listTodo.push(todo_Object);
     }
   }
 });
@@ -37205,6 +37213,16 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("h2", [_vm._v("Todo Table")]),
     _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-success",
+        attrs: { type: "button" },
+        on: { click: _vm.addMoreRowdefault }
+      },
+      [_vm._v("Add more")]
+    ),
+    _vm._v(" "),
     _c("table", { staticClass: "table table-bordered" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -49660,8 +49678,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/TodoApp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/TodoApp/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/html/TodoApp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/html/TodoApp/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

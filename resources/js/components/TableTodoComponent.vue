@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <h2>Todo Table</h2>
+        <button @click="addMoreRowdefault" type="button" class="btn btn-success">Add more</button>
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -37,7 +38,7 @@
                 },
                 listTodo : [],
                 config : {
-                    headers: {'Authorization': "bearer " + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU1Njk2NDExNSwiZXhwIjoxNTU2OTY3NzE1LCJuYmYiOjE1NTY5NjQxMTUsImp0aSI6IkFlZmVKUUpncHg0RjZ6SE0iLCJzdWIiOjcsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.elbHgiwfogFxlogwE3fAbyMBgl6A8QwA0mvRBHEjqlc'}
+                    headers: {'Authorization': "bearer " + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU1NzEyMzQ2MSwiZXhwIjoxNTU3MTI3MDYxLCJuYmYiOjE1NTcxMjM0NjEsImp0aSI6Ik50RVZMNlJoTjVoZWZLN2EiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.Z3D0vy7_GxmXTFpsvoOBL7mogSEkOJskDwnW4LedqSM'}
                 },
             }
         },
@@ -62,7 +63,15 @@
                     .catch(error => {
                         alert(error.response.data.status);
                     });
+            },
+            addMoreRowdefault(){
+                let todo_Object = {
+                    name : 'abc',
+                    description: 'abc123'
+                }
+                this.listTodo.push(todo_Object);
             }
+
         }
 
     }

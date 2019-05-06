@@ -40,8 +40,8 @@
         "classmap": [
             "database/seeds",
             "database/factories"
-        ],
-        "files": ["App/Contracts/Repositories.php"]
+        ]
+
     },
     "autoload-dev": {
         "psr-4": {
