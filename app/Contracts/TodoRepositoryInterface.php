@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Contracts\Repositories;
+
+namespace App\Contracts;
+
 
 interface TodoRepositoryInterface
 {

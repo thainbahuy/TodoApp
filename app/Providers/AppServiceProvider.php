@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Contracts\TodoRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -14,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('App\Contracts\Repositories\TodoRepositoryInterface',
+        $this->app->bind('App\Contracts\TodoRepositoryInterface',
             'App\Repositories\TodoRepository'
         );
     }

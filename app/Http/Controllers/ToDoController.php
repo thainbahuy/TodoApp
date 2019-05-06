@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Repositories\TodoRepositoryInterface;
+use App\Contracts\TodoRepositoryInterface;
 use Illuminate\Http\Request;
-use App\Todo;
 use Illuminate\Http\Response;
 
 

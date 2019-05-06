@@ -3,8 +3,8 @@
 namespace App\Repositories;
 
 //use Your Model
+use App\Contracts\TodoRepositoryInterface;
 use App\Todo;
-use App\Contracts\Repositories\TodoRepositoryInterface;
 
 class TodoRepository implements TodoRepositoryInterface
 {
